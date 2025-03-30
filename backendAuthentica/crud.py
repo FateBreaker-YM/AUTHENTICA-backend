@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from . import models
+from backendAuthentica import models
 
 def create_user(
     db: Session, full_name: str, country: str, state: str, department_name: str, department_id: str, 

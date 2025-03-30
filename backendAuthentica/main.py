@@ -2,10 +2,10 @@
 from fastapi import FastAPI, Form, File, UploadFile, Depends
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
-from . import crud, models,schemas
-from .database import SessionLocal
-from .database import engine
-from .database import init_db
+from backendAuthentica import crud, models, schemas
+from backendAuthentica.database import SessionLocal
+from backendAuthentica.database import engine
+from backendAuthentica.database import init_db
 import os
 
 DATABASE_URL = "sqlite:///./test.db"  # SQLite database file
@@ -43,6 +43,8 @@ async def create_user(
 ):
     # Save the uploaded image to the 'images' folder
     img_path = f"images/{department_img.filename}"  # Define the image path
+
+    os.makedirs(os.path.dirname(img_path), exist_ok=True)
     
     # Save the image
     with open(img_path, "wb") as buffer:
